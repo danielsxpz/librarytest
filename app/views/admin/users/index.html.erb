@@ -1,20 +1,23 @@
-<h1>Bibliotecários</h1>
-<%= link_to "Cadastrar Novo Bibliotecário", new_admin_user_path %>
+<h1>Painel de Administração - Bibliotecários</h1>
 
-<table>
+<p>
+  <%= link_to "Cadastrar Novo Bibliotecário", new_admin_user_path, class: 'button' %>
+</p>
+
+<table border="1" style="width:100%; border-collapse: collapse;">
   <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Ações</th>
+    <tr style="background-color: #f2f2f2;">
+      <th style="padding: 8px;">Nome</th>
+      <th style="padding: 8px;">Email</th>
+      <th style="padding: 8px;">Precisa Trocar Senha?</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.nome %></td>
-        <td><%= user.email %></td>
-        <td></td>
+        <td style="padding: 8px;"><%= user.nome %></td>
+        <td style="padding: 8px;"><%= user.email %></td>
+        <td style="padding: 8px; text-align: center;"><%= user.senha_provisoria? ? 'Sim' : 'Não' %></td>
       </tr>
     <% end %>
   </tbody>

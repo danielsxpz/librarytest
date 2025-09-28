@@ -15,6 +15,7 @@ class Admin::UsersController < ApplicationController
     senha_provisoria = Devise.friendly_token.first(8)
     @user = User.new(user_params)
     @user.password = senha_provisoria
+    @user.password_confirmation = senha_provisoria # Devise exige a confirmação
     @user.senha_provisoria = true # Garante que a flag está ativa
 
     if @user.save
@@ -30,7 +31,7 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:nome, :email)
   end
-  
+
   def authorize_admin!
     redirect_to root_path, alert: 'Acesso não autorizado.' unless current_user.admin?
   end
