@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.find_or_create_by!(email: 'admin@biblioteca.com') do |user|
+  user.nome = 'Administrador'
+  user.password = 'password'
+  user.admin = true
+  user.senha_provisoria = false # O admin não precisa trocar a senha
+end
+
+puts "Usuário Admin criado com sucesso!"

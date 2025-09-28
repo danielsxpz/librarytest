@@ -1,0 +1,21 @@
+<h1>Bibliotecários</h1>
+<%= link_to "Cadastrar Novo Bibliotecário", new_admin_user_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.nome %></td>
+        <td><%= user.email %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
