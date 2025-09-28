@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
 
   def force_password_change
     if current_user&.senha_provisoria?
-      # A rota padrão do Devise para editar a senha é 'edit_user_password_path'
-      # Usamos `return if` para garantir que a verificação pare aqui
-      return if request.path == edit_user_password_path(current_user)
-
-      redirect_to edit_user_password_path(current_user), alert: "Por favor, altere sua senha provisória para continuar."
+      # A rota correta do Devise não precisa de argumento
+      # Esta verificação agora vai funcionar e quebrar o loop
+      if request.path != edit_user_password_path
+        redirect_to edit_user_password_path, alert: "Por favor, altere sua senha provisória para continuar."
+      end
     end
   end
 
